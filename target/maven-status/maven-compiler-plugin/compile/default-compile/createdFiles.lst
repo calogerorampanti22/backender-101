@@ -1,7 +1,0 @@
-calogero\rampanti\backender_101\dao\PersonDao.class
-calogero\rampanti\backender_101\dao\PersonDataAccessService.class
-calogero\rampanti\backender_101\model\Person.class
-calogero\rampanti\backender_101\api\PersonController.class
-calogero\rampanti\backender_101\Backender101Application.class
-calogero\rampanti\backender_101\service\PersonService.class
-calogero\rampanti\backender_101\dao\FakePersonDataAccessService.class
