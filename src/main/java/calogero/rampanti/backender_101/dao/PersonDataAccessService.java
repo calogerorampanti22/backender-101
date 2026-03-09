@@ -1,6 +1,7 @@
 package calogero.rampanti.backender_101.dao;
 
 import calogero.rampanti.backender_101.model.Person;
+import calogero.rampanti.backender_101.model.Profession;
 import calogero.rampanti.backender_101.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,7 +22,7 @@ public class PersonDataAccessService implements PersonDao {
 
     @Override
     public int insertPerson(UUID id, Person person) {
-        personRepository.save(new Person(id, person.getName()));
+        personRepository.save(new Person(id, person.getName(), person.getProfession()));
         return 1;
     }
 
@@ -47,5 +48,11 @@ public class PersonDataAccessService implements PersonDao {
         oldPerson.setName(person.getName());
         personRepository.save(oldPerson);
         return 1;
+    }
+
+    @Override
+    public Profession getProfessionByPersonName(String PersonName) {
+        Person person = personRepository.findByName(PersonName);
+        return person.getProfession();
     }
 }

@@ -2,6 +2,7 @@ package calogero.rampanti.backender_101.service;
 
 import calogero.rampanti.backender_101.dao.PersonDao;
 import calogero.rampanti.backender_101.model.Person;
+import calogero.rampanti.backender_101.model.Profession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -38,5 +39,9 @@ public class PersonService {
 
     public int deletePerson(UUID id) {
         return personDao.deletePersonById(id);
+    }
+
+    public Profession getProfessionByPersonName(String personName) {
+        return personDao.getProfessionByPersonName(personName);
     }
 }

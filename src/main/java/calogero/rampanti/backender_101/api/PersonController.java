@@ -1,6 +1,7 @@
 package calogero.rampanti.backender_101.api;
 
 import calogero.rampanti.backender_101.model.Person;
+import calogero.rampanti.backender_101.model.Profession;
 import calogero.rampanti.backender_101.service.PersonService;
 import jakarta.validation.Valid;
 import org.jspecify.annotations.NonNull;
@@ -31,18 +32,23 @@ public class PersonController {
         return personService.getAllPeople();
     }
 
-    @GetMapping(path = "{id}")
+    @GetMapping(path = "id/{id}")
     public Person getPersonById(@PathVariable("id") UUID id) {
         return personService.getPersonById(id).orElse(null);
     }
 
-    @DeleteMapping(path = "{id}")
+    @DeleteMapping(path = "id/{id}")
     public void deletePersonById(@PathVariable("id") UUID id) {
         personService.deletePerson(id);
     }
 
-    @PutMapping(path = "{id}")
+    @PutMapping(path = "id/{id}")
     public void updatePerson(@PathVariable("id") UUID id, @Valid @NonNull @RequestBody Person personToUpdate) {
         personService.updatePerson(id, personToUpdate);
+    }
+
+    @GetMapping(path = "profession")
+    public Profession getProfessionByPerson(@RequestParam(name = "personName") String personName) {
+        return personService.getProfessionByPersonName(personName);
     }
 }

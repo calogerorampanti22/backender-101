@@ -1,6 +1,7 @@
 package calogero.rampanti.backender_101.dao;
 
 import calogero.rampanti.backender_101.model.Person;
+import calogero.rampanti.backender_101.model.Profession;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -50,5 +51,10 @@ public class FakePersonDataAccessService implements PersonDao {
                     return 0;
                 })
                 .orElse(0);
+    }
+
+    @Override
+    public Profession getProfessionByPersonName(String PersonName) {
+        return null;
     }
 }

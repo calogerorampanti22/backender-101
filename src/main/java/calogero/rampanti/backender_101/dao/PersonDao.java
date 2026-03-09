@@ -1,6 +1,7 @@
 package calogero.rampanti.backender_101.dao;
 
 import calogero.rampanti.backender_101.model.Person;
+import calogero.rampanti.backender_101.model.Profession;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,5 +24,5 @@ public interface PersonDao {
 
     int updatePersonById(UUID id, Person person);
 
-
+    Profession getProfessionByPersonName(String PersonName);
 }
