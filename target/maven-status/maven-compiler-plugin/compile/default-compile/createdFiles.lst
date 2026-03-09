@@ -1,4 +1,5 @@
 calogero\rampanti\backender_101\dao\PersonDao.class
+calogero\rampanti\backender_101\repository\PersonRepository.class
 calogero\rampanti\backender_101\dao\PersonDataAccessService.class
 calogero\rampanti\backender_101\model\Person.class
 calogero\rampanti\backender_101\api\PersonController.class
