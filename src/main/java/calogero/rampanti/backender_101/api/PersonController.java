@@ -6,7 +6,10 @@ import calogero.rampanti.backender_101.service.PersonService;
 import jakarta.validation.Valid;
 import org.jspecify.annotations.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.UUID;
@@ -53,7 +56,32 @@ public class PersonController {
     }
 
     @GetMapping(path = "getNamesByChar/{c}")
-    public String getNamesByChar(@PathVariable("c") char c) {
-        return personService.getNamesByChar(c);
+    public ResponseEntity<String> getNamesByChar(@PathVariable("c") char c) {
+
+        try {
+            if(Character.toUpperCase(c) == 'X') {
+                throw new RuntimeException("Eccezione forzata");
+            }
+
+            String result = personService.getNamesByChar(c);
+
+            if(result.equals("Invalid input")) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid input");
+            }
+            if(result.equals("Resource not found")) {
+                throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Resource not found");
+            }
+
+            return ResponseEntity.status(HttpStatus.OK).body(result);
+
+        }
+        catch (ResponseStatusException e) {
+            return ResponseEntity.status(e.getStatusCode()).body(e.getReason());
+        }
+        catch(RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Eccezione forzata: " + e.getMessage());
+        }
+
+
     }
 }
