@@ -26,4 +26,6 @@ public interface PersonDao {
 
     Profession getProfessionByPersonName(String PersonName);
 
+    String getNamesByChar(char c);
+
 }

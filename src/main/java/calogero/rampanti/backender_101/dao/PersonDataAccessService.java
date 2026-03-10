@@ -4,12 +4,15 @@ import calogero.rampanti.backender_101.model.Person;
 import calogero.rampanti.backender_101.model.Profession;
 import calogero.rampanti.backender_101.repository.PersonRepository;
 import calogero.rampanti.backender_101.repository.ProfessionRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+
+import static java.lang.Character.toUpperCase;
 
 @Repository("mysql")
 public class PersonDataAccessService implements PersonDao {
@@ -55,6 +58,23 @@ public class PersonDataAccessService implements PersonDao {
     public Profession getProfessionByPersonName(String PersonName) {
         Person person = personRepository.findByName(PersonName);
         return person.getProfession();
+    }
+
+    @Override
+    public String getNamesByChar(char c) {
+        String s = "";
+        List<Person> people = personRepository.findAll();
+
+        for (Person person : people) {
+            if(toUpperCase(person.getName().charAt(0)) == toUpperCase(c)) {
+                s = s.concat(person.getName()).concat(", ");
+            }
+        }
+        if(!s.isEmpty())
+            s = s.substring(0, s.length() - 2);
+        else s = "Resource not found";
+
+        return s;
     }
 
 

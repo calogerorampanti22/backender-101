@@ -58,4 +58,9 @@ public class FakePersonDataAccessService implements PersonDao {
         return null;
     }
 
+    @Override
+    public String getNamesByChar(char c) {
+        return "";
+    }
+
 }

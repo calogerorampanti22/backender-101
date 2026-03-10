@@ -51,4 +51,9 @@ public class PersonController {
     public Profession getProfessionByPerson(@RequestParam(name = "personName") String personName) {
         return personService.getProfessionByPersonName(personName);
     }
+
+    @GetMapping(path = "getNamesByChar/{c}")
+    public String getNamesByChar(@PathVariable("c") char c) {
+        return personService.getNamesByChar(c);
+    }
 }

@@ -3,6 +3,7 @@ package calogero.rampanti.backender_101.service;
 import calogero.rampanti.backender_101.dao.PersonDao;
 import calogero.rampanti.backender_101.model.Person;
 import calogero.rampanti.backender_101.model.Profession;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -43,6 +44,15 @@ public class PersonService {
 
     public Profession getProfessionByPersonName(String personName) {
         return personDao.getProfessionByPersonName(personName);
+    }
+
+    public String getNamesByChar(char c) {
+        if(inputIsValid(c)) return personDao.getNamesByChar(c);
+        return "Invalid input";
+    }
+
+    private boolean inputIsValid(char c) {
+        return Character.isLetter(c);
     }
 
 }
