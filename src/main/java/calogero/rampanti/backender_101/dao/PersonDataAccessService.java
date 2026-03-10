@@ -72,7 +72,6 @@ public class PersonDataAccessService implements PersonDao {
         }
         if(!s.isEmpty())
             s = s.substring(0, s.length() - 2);
-        else s = "Resource not found";
 
         return s;
     }

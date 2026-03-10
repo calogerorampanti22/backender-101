@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -47,8 +48,21 @@ public class PersonService {
     }
 
     public String getNamesByChar(char c) {
-        if(inputIsValid(c)) return personDao.getNamesByChar(c);
-        return "Invalid input";
+        if(!inputIsValid(c)) {
+            throw new IllegalArgumentException("Invalid input");
+        }
+
+        if(Character.toUpperCase(c) == 'X') {
+            throw new RuntimeException("Eccezione forzata");
+        }
+
+        String result = personDao.getNamesByChar(c);
+
+        if(result.isEmpty()) {
+            throw new NoSuchElementException("Resource not found");
+        }
+
+        return result;
     }
 
     private boolean inputIsValid(char c) {
