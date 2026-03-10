@@ -25,4 +25,5 @@ public interface PersonDao {
     int updatePersonById(UUID id, Person person);
 
     Profession getProfessionByPersonName(String PersonName);
+
 }

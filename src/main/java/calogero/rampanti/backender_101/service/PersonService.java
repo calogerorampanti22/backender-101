@@ -44,4 +44,5 @@ public class PersonService {
     public Profession getProfessionByPersonName(String personName) {
         return personDao.getProfessionByPersonName(personName);
     }
+
 }

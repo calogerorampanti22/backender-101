@@ -3,6 +3,7 @@ package calogero.rampanti.backender_101.dao;
 import calogero.rampanti.backender_101.model.Person;
 import calogero.rampanti.backender_101.model.Profession;
 import calogero.rampanti.backender_101.repository.PersonRepository;
+import calogero.rampanti.backender_101.repository.ProfessionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -55,4 +56,6 @@ public class PersonDataAccessService implements PersonDao {
         Person person = personRepository.findByName(PersonName);
         return person.getProfession();
     }
+
+
 }
